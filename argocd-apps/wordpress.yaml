@@ -18,7 +18,7 @@ spec:
       targetRevision: main
       ref: values
   destination:
-    server: https://default.svc
+    server: https://kubernetes.default.svc
     namespace: wordpress
   syncPolicy:
     automated:
