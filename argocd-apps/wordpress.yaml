@@ -8,14 +8,14 @@ metadata:
 spec:
   project: default
   sources:
-    - repoURL: https://bitnami.com
+    - repoURL: registry-1.docker.io/bitnamicharts  # OCI, без префикса oci://
       chart: wordpress
-      targetRevision: "*"  # Всегда брать актуальную стабильную версию (или укажите точную, напр. 24.1.24)
+      targetRevision: 34.2.12  # зафиксированная версия чарта
       helm:
         valueFiles:
           - $values/apps/wordpress/values.yaml
     - repoURL: https://github.com/Sater1917/argocdwp.git
-      targetRevision: main
+      targetRevision: master
       ref: values
   destination:
     server: https://kubernetes.default.svc
@@ -26,4 +26,3 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
-      
