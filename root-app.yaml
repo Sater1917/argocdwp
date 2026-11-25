@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/Sater1917/argocdwp.git
-    targetRevision: main
+    targetRevision: master
     path: argocd-apps
   destination:
     server: https://kubernetes.default.svc
