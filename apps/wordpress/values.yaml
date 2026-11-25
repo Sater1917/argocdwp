@@ -1,0 +1,30 @@
+wordpressUsername: admin
+wordpressPassword: "SuperSecretPassword123"
+wordpressEmail: "admin@example.com"
+wordpressBlogName: "My GitOps Blog"
+
+service:
+  type: ClusterIP
+
+ingress:
+  enabled: true
+  hostname: 192.168.88.96.nip.io
+  path: /
+  pathType: Prefix
+
+persistence:
+  enabled: true
+  size: 5Gi
+
+mariadb:
+  enabled: true
+  auth:
+    rootPassword: "RootDbPassword123"
+    database: "bitnami_wordpress"
+    username: "bn_wordpress"
+    password: "DbPassword123"
+  primary:
+    persistence:
+      enabled: true
+      size: 5Gi
+      

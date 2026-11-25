@@ -1,0 +1,29 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: wordpress
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  sources:
+    - repoURL: https://bitnami.com
+      chart: wordpress
+      targetRevision: "*"  # Всегда брать актуальную стабильную версию (или укажите точную, напр. 24.1.24)
+      helm:
+        valueFiles:
+          - $values/apps/wordpress/values.yaml
+    - repoURL: https://github.com/Sater1917/argocdwp.git
+      targetRevision: main
+      ref: values
+  destination:
+    server: https://default.svc
+    namespace: wordpress
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      
